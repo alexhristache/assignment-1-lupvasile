@@ -33,7 +33,7 @@ public class tests implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
-        //jeg();
+        //functie();
 
         /*Answer ans = new Answer(2,"asdf",ZonedDateTime.now(),5,0);
         Map<String,Object> ff = getElementMap(ans,Answer.class);
@@ -85,7 +85,7 @@ public class tests implements CommandLineRunner {
     }
 
     @Transactional
-    void jeg() {
+    void functie() {
         HibernateAnswerRepository hibernateAnswerRepository = new HibernateAnswerRepository(entityManager);
         //System.out.println(hibernateAnswerRepository.findAllbyQuestionId(1));
 

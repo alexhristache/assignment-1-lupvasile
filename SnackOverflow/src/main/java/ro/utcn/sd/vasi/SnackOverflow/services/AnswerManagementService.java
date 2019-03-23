@@ -21,10 +21,11 @@ public class AnswerManagementService {
 
     @Transactional
     public List<Answer> listAnswersForQuestion(int questionId) {
-        Question question = repositoryFactory.createQuestionRepository().findById(questionId).orElse(null);
+        /*Question question = repositoryFactory.createQuestionRepository().findById(questionId).orElse(null);
         if(question == null) {
             return new ArrayList<>();
-        }
+        }*/
+        Question question = repositoryFactory.createQuestionRepository().findById(questionId).orElseThrow(QuestionNotFoundException::new);
 
         return repositoryFactory.createAnswerRepository().findAllbyQuestionId(questionId).stream().sorted(Comparator.comparing(Answer::getVoteCount).reversed()).collect(Collectors.toList());
     }

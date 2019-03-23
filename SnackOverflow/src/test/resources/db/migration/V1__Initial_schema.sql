@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS`user` (
      `password` VARCHAR(45) NOT NULL,
      `is_moderator` BIT(1) NOT NULL,
      `is_banned` BIT(1) NOT NULL,
-     PRIMARY KEY (`id`),
+     PRIMARY KEY (`id`));
 
 
 CREATE TABLE IF NOT EXISTS `question` (

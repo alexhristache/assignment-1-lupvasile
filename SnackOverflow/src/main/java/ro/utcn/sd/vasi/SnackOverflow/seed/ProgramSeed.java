@@ -2,6 +2,7 @@ package ro.utcn.sd.vasi.SnackOverflow.seed;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ import java.util.HashSet;
 @Component
 @RequiredArgsConstructor
 @Order(Ordered.HIGHEST_PRECEDENCE)
+@Profile("!test")
 public class ProgramSeed implements CommandLineRunner {
     private final RepositoryFactory factory;
     private final QuestionManagementService questionManagementService;

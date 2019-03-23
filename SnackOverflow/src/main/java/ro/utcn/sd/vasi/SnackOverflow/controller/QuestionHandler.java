@@ -2,6 +2,7 @@ package ro.utcn.sd.vasi.SnackOverflow.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ro.utcn.sd.vasi.SnackOverflow.model.*;
 import ro.utcn.sd.vasi.SnackOverflow.services.AnswerManagementService;
@@ -12,6 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
+@Profile("!test")
 public class QuestionHandler extends CommandHandler{
     public QuestionHandler(ConsoleController consoleController, AnswerManagementService answerManagementService, QuestionManagementService questionManagementService, UserManagementService userManagementService) {
         super(consoleController, answerManagementService, questionManagementService, userManagementService);

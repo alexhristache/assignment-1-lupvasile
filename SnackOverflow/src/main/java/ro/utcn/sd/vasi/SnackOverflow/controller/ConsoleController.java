@@ -3,6 +3,7 @@ package ro.utcn.sd.vasi.SnackOverflow.controller;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ro.utcn.sd.vasi.SnackOverflow.model.Answer;
 import ro.utcn.sd.vasi.SnackOverflow.model.Question;
@@ -17,6 +18,7 @@ import java.util.*;
 @Component
 @Data
 @RequiredArgsConstructor
+@Profile("!test")
 public class ConsoleController implements CommandLineRunner {
     private final Scanner scanner = new Scanner(System.in);
     private final AnswerManagementService answerManagementService;

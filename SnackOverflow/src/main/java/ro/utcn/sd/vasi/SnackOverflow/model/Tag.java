@@ -3,6 +3,7 @@ package ro.utcn.sd.vasi.SnackOverflow.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -41,5 +42,10 @@ public class Tag implements Comparable, HasIntId{
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

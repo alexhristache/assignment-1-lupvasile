@@ -32,7 +32,7 @@ public class QuestionManagementService {
 
 
     @Transactional
-    public List<Question> filterQuestionsByTag(Set<String> tags) {
+    public List<Question> filterQuestionsByTag(Set<Tag> tags) {
         return repositoryFactory.createQuestionRepository().findAll().stream()
                 .filter(x->x.getTags().containsAll(tags))
                 .sorted(Comparator.comparing(Question::getCreationDateTime).reversed()).collect(Collectors.toList());

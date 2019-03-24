@@ -52,7 +52,7 @@ public class QuestionHandler extends CommandHandler{
         List<Question> questions = questionManagementService.listQuestions();
         questionManagementService.listQuestions().forEach(x->{
             UserData user = userManagementService.getUserData(x.getAuthorId()).orElse(null);
-            print(x.toString() + " author: " + user.getUsername() + " score: " + user.getScore());});
+            print(x.toStringNoText() + " author: " + user.getUsername() + " score: " + user.getScore());});
     }
 
     private void handleAddQuestion() {
@@ -76,19 +76,27 @@ public class QuestionHandler extends CommandHandler{
         print("Existing tags: " + questionManagementService.listAllTags());
         print("Please input the tags, comma separated");
         String tagStr = scanner.nextLine().trim();
-        Set<String> tags = new TreeSet<>(Arrays.asList(tagStr.toLowerCase().split(",")));
-        questionManagementService.filterQuestionsByTag(tags).forEach(x->{
+        Set<Tag> tags = new TreeSet<>(Arrays.asList(tagStr.toLowerCase().split(",")).stream().map(x->new Tag(x)).collect(Collectors.toList()));
+
+        List<Question> questions = questionManagementService.filterQuestionsByTag(tags);
+
+        questions.forEach(x->{
             UserData user = userManagementService.getUserData(x.getAuthorId()).orElse(null);
-            print(x.toString() + " author: " + user.getUsername() + " score: " + user.getScore());});
+            print(x.toStringNoText() + " author: " + user.getUsername() + " score: " + user.getScore());});
+
+        if(questions.isEmpty()) print("No questions");
     }
 
     private void handleFilterByTitle() {
         print("Please input the title");
         String title = scanner.nextLine().trim();
 
-        questionManagementService.filterQuestionsByTitle(title).forEach(x->{
+        List<Question> questions = questionManagementService.filterQuestionsByTitle(title);
+        questions.forEach(x->{
             UserData user = userManagementService.getUserData(x.getAuthorId()).orElse(null);
-            print(x.toString() + " author: " + user.getUsername() + " score: " + user.getScore());});
+            print(x.toStringNoText() + " author: " + user.getUsername() + " score: " + user.getScore());});
+
+        if(questions.isEmpty()) print("No questions");
     }
 
     private void handleSeeQuestionAnswers() {

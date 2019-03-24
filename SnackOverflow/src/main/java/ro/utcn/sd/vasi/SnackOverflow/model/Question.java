@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -48,5 +49,30 @@ public class Question implements HasIntId{
         this.voteCount = voteCount;
 
         this.tags.addAll(tags);
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", authorId=" + authorId +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", creationDate=" + DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(creationDateTime) +
+                ", tags=" + tags +
+                ", voteCount=" + voteCount +
+                '}';
+    }
+
+    public String toStringNoText() {
+        return "Question{" +
+                "id=" + id +
+                ", authorId=" + authorId +
+                ", title='" + title + '\'' +
+                //", text='" + text + '\'' +
+                ", creationDate=" + DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(creationDateTime) +
+                ", tags=" + tags +
+                ", voteCount=" + voteCount +
+                '}';
     }
 }

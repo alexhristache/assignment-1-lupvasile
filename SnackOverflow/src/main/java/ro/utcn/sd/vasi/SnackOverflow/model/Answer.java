@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity
@@ -35,5 +36,17 @@ public class Answer implements HasIntId{
         this.creationDateTime = creationDateTime;
         this.questionId = questionId;
         this.voteCount = voteCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", authorId=" + authorId +
+                ", text='" + text + '\'' +
+                ", creationDate=" + DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(creationDateTime) +
+                ", questionId=" + questionId +
+                ", voteCount=" + voteCount +
+                '}';
     }
 }

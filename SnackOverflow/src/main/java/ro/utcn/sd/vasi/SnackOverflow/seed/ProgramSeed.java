@@ -42,7 +42,8 @@ public class ProgramSeed implements CommandLineRunner {
         if(repository.findAll().isEmpty()) {
             repository.save(new User(null, "u1","pass",0,false,false));
             repository.save(new User(null, "u2","pass",0,true,false));
-            repository.save(new User(null, "u3","pass",0,false,true));
+            repository.save(new User(null, "u3","pass",0,false,false));
+            repository.save(new User(null, "u4","pass",0,false,true));
         }
     }
 
@@ -51,9 +52,9 @@ public class ProgramSeed implements CommandLineRunner {
 
         User u = factory.createUserRepository().findAll().get(0);
         if(repository.findAll().isEmpty()) {
-            questionManagementService.addQuestion(u.getId(),"question 1","ana are mere multe1",new HashSet<>(Arrays.asList(new Tag("tag1"),new Tag("tag2"),new Tag("tag3"))));
-            questionManagementService.addQuestion(u.getId(),"question 2","ana are mere multe2",new HashSet<>(Arrays.asList(new Tag("tag2"))));
-            questionManagementService.addQuestion(u.getId(),"question 3","ana are mere multe3",new HashSet<>(Arrays.asList(new Tag("tag3"))));
+            questionManagementService.addQuestion(1,"question 1","ana are mere multe1",new HashSet<>(Arrays.asList(new Tag("tag1"),new Tag("tag2"),new Tag("tag3"))));
+            questionManagementService.addQuestion(2,"question 2","ana are mere multe2",new HashSet<>(Arrays.asList(new Tag("tag2"))));
+            questionManagementService.addQuestion(3,"question 3","ana are mere multe3",new HashSet<>(Arrays.asList(new Tag("tag3"))));
         }
     }
 
@@ -63,9 +64,9 @@ public class ProgramSeed implements CommandLineRunner {
         Question q = factory.createQuestionRepository().findAll().get(0);
 
         if(repository.findAll().isEmpty()) {
-            answerManagementService.addAnswer(u.getId(),q.getId(),"answer 1");
-            answerManagementService.addAnswer(u.getId(),q.getId(),"answer 2");
-            answerManagementService.addAnswer(u.getId(),q.getId(),"answer 3");
+            answerManagementService.addAnswer(1,q.getId(),"answer 1");
+            answerManagementService.addAnswer(2,q.getId(),"answer 2");
+            answerManagementService.addAnswer(3,q.getId(),"answer 3");
         }
     }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Not;
 import org.springframework.stereotype.Service;
 import ro.utcn.sd.vasi.SnackOverflow.exceptions.NotEnoughPermissionsException;
+import ro.utcn.sd.vasi.SnackOverflow.exceptions.NotEnoughTagsException;
 import ro.utcn.sd.vasi.SnackOverflow.exceptions.QuestionNotFoundException;
 import ro.utcn.sd.vasi.SnackOverflow.exceptions.UserNotFoundException;
 import ro.utcn.sd.vasi.SnackOverflow.model.*;
@@ -57,6 +58,8 @@ public class QuestionManagementService {
     public Question addQuestion(int userId, String title, String text, Set<Tag> tags) {
         User user = repositoryFactory.createUserRepository().findById(userId).orElseThrow(UserNotFoundException::new);
         if(user.getIsBlocked()) throw new NotEnoughPermissionsException();
+        if(tags.isEmpty()) throw new NotEnoughTagsException();
+
         tags = saveQuestionTags(tags);
         return repositoryFactory.createQuestionRepository().save(new Question(userId,title,text, ZonedDateTime.now(), tags,0));
     }

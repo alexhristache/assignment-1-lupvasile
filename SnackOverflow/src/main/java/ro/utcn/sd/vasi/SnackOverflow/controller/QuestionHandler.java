@@ -67,7 +67,7 @@ public class QuestionHandler extends CommandHandler{
         print("Please input the tags, comma separated");
         String tagStr = scanner.nextLine().trim();
         Set<Tag> tags = new TreeSet<>(Arrays.asList(tagStr.toLowerCase().split(",")).stream().map(x->new Tag(x)).collect(Collectors.toList()));
-
+        tags.removeIf(x->x.getName().equals(""));
         questionManagementService.addQuestion(currentUser.getId(),title,text,tags);
         print("Question successfully added");
     }
